@@ -1,5 +1,5 @@
 <?php 
-mysql_connect('localhost', 'root', ''); // Connect to 
-mysql_select_db('test'); // Connect to the server test.
+$mysqli = mysqli_connect('localhost', 'root', '');
+mysqli_select_db($mysqli, 'test'); 
 
 ?>

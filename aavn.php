@@ -3,42 +3,36 @@
 
 // Initialize session and connect to the user database.
 include 'core/init.php';
-
+include 'head.php';
 ?>
 
 <!DOCTYPE html>
 <html>
-<head> 
-	<title> AAVN website </title>
-
-</head>
-
-<body>
-	
-	<header>
-	</header>
-	
-
-	<div id="container">
-
-		<form class="login">
-
-			<div class="input">
-				<input type="email" placeholder="Email" required />
-			</div>
-
-
-			<div class="input">
-				<input type="password" placeholder="Password" required />
-			</div>
-
-			<button type="submit" class="submit"> Login </button>
+	<body>
 		
-		</form>
-	</div>
+		<header>
+		</header>
+		
+
+		<div id="container">
+			<form class="login" action="user_login.php" method="post">
+				<div class="input">
+					<input type="email" placeholder="Email" name="email" required/>
+				</div>
+
+				<div class="input">
+					<input type="password" placeholder="Password" name="password" required/>
+				</div>
+
+				<button type="submit" class="submit"> Login </button>
+			
+			</form>
+		</div>
 
 
 
-	<footer>
-	</footer>
-</body>
+		<footer>
+		</footer>
+
+	</body>
+</html>
