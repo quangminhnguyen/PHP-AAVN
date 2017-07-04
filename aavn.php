@@ -15,7 +15,9 @@ include 'head.php';
 		
 
 		<div id="container">
-			<form class="login" action="user_login.php" method="post">
+			<h4> <?php include 'user_login.php'; ?> </h4>
+
+			<form class="login" action="aavn.php" method="post">
 				<div class="input">
 					<input type="email" placeholder="Email" name="email" required/>
 				</div>
@@ -25,8 +27,8 @@ include 'head.php';
 				</div>
 
 				<button type="submit" class="submit"> Login </button>
-			
 			</form>
+
 		</div>
 
 

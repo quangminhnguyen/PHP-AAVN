@@ -10,16 +10,17 @@ function user_exists($email, $password) {
 			return True;
 		} 
 	}
-	
 	return False;
 }
 
 // Get a user id given an email address.
 function get_user_id($email) {
-	global mysqli;
-	$result = $mysqli->query("SELECT id FROM user WHERE user.email = $email");
-
+	global $mysqli;
+	// $email = $mysqli->real_escape_string($email);
+	$result = $mysqli->query("SELECT id FROM user WHERE email = '$email' ");
+	// echo 'num of rows: '.$result->num_rows;
 	$user = mysqli_fetch_assoc($result);
+
 	return $user['id'];
 }
 

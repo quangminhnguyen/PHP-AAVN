@@ -4,5 +4,5 @@ require 'database/connect.php';
 require 'functions/users.php';
 
 // Array to store list of errors.
-$error = array();
+$error = '';
 ?>
