@@ -9,10 +9,7 @@ include 'head.php';
 <!DOCTYPE html>
 <html>
 	<body>
-		
-		<header>
-		</header>
-		
+		<?php include 'layout/header.php' ?>
 
 		<div id="container">
 			<h4> <?php include 'user_login.php'; ?> </h4>
@@ -28,13 +25,9 @@ include 'head.php';
 
 				<button type="submit" class="submit"> Login </button>
 			</form>
-
 		</div>
 
 
-
-		<footer>
-		</footer>
-
+		<?php include 'layout/bottom.php' ?>
 	</body>
 </html>

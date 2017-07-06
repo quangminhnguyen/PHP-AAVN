@@ -25,4 +25,26 @@ function get_user_id($email) {
 }
 
 
+function construct_elective_dropdown($name) {
+	global $mysqli;
+	$result = $mysqli->query("SELECT * FROM electivesInfo");
+
+	echo '<select name="'.$name.'">';
+	while($elective = mysqli_fetch_assoc($result)) {
+		echo '<option value="'.$elective['name'].'">'.$elective['name'].'</option>';
+	}
+	echo '</select>';
+}
+
+
+function construct_elective_checklist($name) {
+	global $mysqli;
+	$result = $mysqli->query("SELECT * FROM electivesInfo");
+
+	while($elective = mysqli_fetch_assoc($result)) {
+		echo '<input type="radio" name="'.$name.'" value="'.$elective['name'].'">'.$elective['name'].'</input>';
+	}
+
+}
+
 ?>

@@ -11,3 +11,11 @@ if (isset($_SESSION['id'])) {
 	echo 'Not logged in';
 }
 ?>
+
+<html>
+	<body> 
+		<?php include 'layout/header.php' ?>
+			
+		<?php include 'layout/bottom.php' ?>
+	</body>
+</html>

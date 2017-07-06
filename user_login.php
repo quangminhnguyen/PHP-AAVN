@@ -1,18 +1,18 @@
 
 <?php 
 
-// Initialize session and connect to the user database.
-//include 'core/init.php';
-//include 'head.php';
+
+// include 'core/init.php';
+// include 'head.php';
 
 
 if (!empty($_POST) === true) {
 	$mail = $_POST['email'];
 	$password = $_POST['password'];
-	$login_page = 'http://localhost/aavn/aavn.php';
-	$admin_page = 'http://localhost/aavn/admin.php';
-	$student_page = 'http://localhost/aavn/student.php';
-	$main_page = 'http://localhost/aavn/aavn.php';
+	$login_page = 'aavn.php';
+	$admin_page = 'admin.php';
+	$student_page = 'student.php';
+	$main_page = 'aavn.php';
 
 	// echo $mail;
 	// echo $password;
@@ -48,7 +48,6 @@ if (!empty($_POST) === true) {
 				header('Location: '.$student_page);
 			}
 			die();
-
 		}
 	}
 }
