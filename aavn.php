@@ -23,7 +23,7 @@ include 'head.php';
 					<input type="password" placeholder="Password" name="password" required/>
 				</div>
 
-				<button type="submit" class="submit"> Login </button>
+				<button type="submit"> Login </button>
 			</form>
 		</div>
 

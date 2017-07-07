@@ -42,9 +42,34 @@ function construct_elective_checklist($name) {
 	$result = $mysqli->query("SELECT * FROM electivesInfo");
 
 	while($elective = mysqli_fetch_assoc($result)) {
-		echo '<input type="radio" name="'.$name.'" value="'.$elective['name'].'">'.$elective['name'].'</input>';
+		echo '<input type="radio" name="'.$name.'" value="'.$elective['electiveid'].'">'.$elective['name'].'</input>';
 	}
 
 }
+
+
+function insert_student_elective_opinion($id, $opinion1, $opinion2, $opinion3) {
+	global $mysqli;
+	$mysqli->query("INSERT INTO studentOpinion (studentid, elective1, elective2, elective3)
+		VALUES ('$id', '$opinion1', '$opinion2', '$opinion3')");
+}
+
+
+function update_student_signed_up_status($id) {
+	global $mysqli;
+	$mysqli->query("UPDATE user SET signed_up=1 WHERE id='$id'");
+}
+
+
+function get_list_of_signedup_electives($id) {
+	global $mysqli;
+	$result = $mysqli->query("SELECT * 
+							FROM user, studentOpinion, electiveInfo AS eIA, electiveInfo AS eIB, electiveInfo AS eIC
+							WHERE studentid = '$id' AND id = studentid AND elective1 = eIA.electiveid AND elective2 = eIB.electiveid AND elective3 = eIC.electiveid");
+	$result = mysqli_fetch_assoc($result);
+	echo $result;
+}
+
+
 
 ?>

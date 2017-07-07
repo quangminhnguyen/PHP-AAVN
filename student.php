@@ -16,7 +16,7 @@ if (isset($_SESSION['id'])) {
 		<?php include 'layout/header.php' ?>
 		
 
-		<form name="select_activity">	
+		<form name="select_activity" action="student_signup.php" method="post">	
 			<div>
 				<?php  construct_elective_checklist('opinion1'); ?>
 			</div>
@@ -28,7 +28,7 @@ if (isset($_SESSION['id'])) {
 			<div>
 				<?php  construct_elective_checklist('opinion3'); ?>
 			</div>
-			<button type="button"> Submit  </button>
+			<button type="submit"> Submit  </button>
 			<button type="button" id="reset_but"> Reset </button> 
 		</form>
 
