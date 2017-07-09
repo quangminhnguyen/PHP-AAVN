@@ -6,6 +6,13 @@ echo 'I am student';
 
 if (isset($_SESSION['id'])) {
 	echo 'Logged in';
+
+	/* If algready signed up. */
+	if (has_signed_up($_SESSION['id'])) {
+		header('Location: student_view_signed_up.php');
+		die();
+	} 
+
 } else {
 	echo 'Not logged in';
 }

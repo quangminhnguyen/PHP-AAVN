@@ -63,11 +63,26 @@ function update_student_signed_up_status($id) {
 
 function get_list_of_signedup_electives($id) {
 	global $mysqli;
-	$result = $mysqli->query("SELECT * 
-							FROM user, studentOpinion, electiveInfo AS eIA, electiveInfo AS eIB, electiveInfo AS eIC
+	$result = $mysqli->query("SELECT eIA.name AS elective1, eIB.name AS elective2, eIC.name AS elective3, eIA.teacher_name as teach_elective1, eIB.teacher_name as teach_elective2, eIC.teacher_name as teach_elective3, eIA.description as description1, eIB.description as description2, eIC.description as description3
+							FROM user, studentOpinion, electivesInfo AS eIA, electivesInfo AS eIB, electivesInfo AS eIC
 							WHERE studentid = '$id' AND id = studentid AND elective1 = eIA.electiveid AND elective2 = eIB.electiveid AND elective3 = eIC.electiveid");
-	$result = mysqli_fetch_assoc($result);
-	echo $result;
+
+	while ($record = mysqli_fetch_assoc($result)) {
+		echo '<br>';
+		print_r($record);
+	}
+}
+
+
+// Returns whether the user has already signed up.
+function has_signed_up($id) {
+	global $mysqli;
+	$result = $mysqli->query("SELECT 1 FROM user WHERE id = '$id'");
+
+	if ($result->num_rows == 1) {
+		return True;
+	} 
+	return False;
 }
 
 

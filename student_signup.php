@@ -14,7 +14,7 @@
 		echo $opinion3;
 		
 
-		insert_student_elective_opinion($id, $opinion1, $opinion2, $opinion2);
+		insert_student_elective_opinion($id, $opinion1, $opinion2, $opinion3);
 
 		update_student_signed_up_status($id);
 
