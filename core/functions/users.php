@@ -67,21 +67,49 @@ function get_list_of_signedup_electives($id) {
 							FROM user, studentOpinion, electivesInfo AS eIA, electivesInfo AS eIB, electivesInfo AS eIC
 							WHERE studentid = '$id' AND id = studentid AND elective1 = eIA.electiveid AND elective2 = eIB.electiveid AND elective3 = eIC.electiveid");
 
-	while ($record = mysqli_fetch_assoc($result)) {
-		echo '<br>';
-		print_r($record);
-	}
+	echo '<h3> Selected electives: </h3>';
+	echo '<br>';
+	
+	$record = mysqli_fetch_assoc($result); 
+	echo 'Opinion 1: '.$record['elective1'];
+	echo '<br>';
+
+	echo 'Opinion 2: '.$record['elective2'];
+	echo '<br>';
+
+	echo 'Opinion 3: '.$record['elective3'];
+	echo '<br>';
+		
 }
 
 
-// Returns whether the user has already signed up.
+/* Returns whether the student has already signed up. */
 function has_signed_up($id) {
 	global $mysqli;
-	$result = $mysqli->query("SELECT 1 FROM user WHERE id = '$id'");
+	$result = $mysqli->query("SELECT 1 
+								FROM user 
+								WHERE id = '$id' AND signed_up = 1");
 
 	if ($result->num_rows == 1) {
 		return True;
-	} 
+	}
+
+	return False;
+}
+
+
+
+/* Returns whether the student elective selection has been confirmed.*/
+function elective_has_been_confirmed($id){
+	global $mysqli;
+	$result = $mysqli->query("SELECT 1 
+								FROM user 
+								WHERE id = '$id' AND elective_confirm = 1");
+
+	if ($result->num_rows == 1) {
+		return True;
+	}
+
 	return False;
 }
 
