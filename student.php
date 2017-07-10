@@ -43,5 +43,7 @@ if (isset($_SESSION['id'])) {
 	</body>
 </html>
 
+<script type="text/javascript" src="script/student.js"></script>
+
 
 
