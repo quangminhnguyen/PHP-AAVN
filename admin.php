@@ -17,13 +17,16 @@ if (isset($_SESSION['id'])) {
 	<body> 
 		<?php include 'layout/header.php' ?>
 		<div class="tab">
-			<button> Class Assignment </button>
-			<button> Electives Information </button>
-			<button> Student Schedule By Class </button>
+				
+				<button id="tablink1">  <span class="glyphicon glyphicon glyphicon-edit"></span> Electives Assignment  </button> 
+			
+
+			<button id="tablink2"> <span class="glyphicon glyphicon glyphicon-list-alt"></span> Electives Information </button>
+			<button id="tablink3"> <span class="glyphicon glyphicon glyphicon-calendar"></span> Student Schedule By Class </button>
 		</div>
 
 		<div id="tab1" class="tabcontent"> 
-			<h3> Class Assignment tab. </h3>
+			<h3> Class Assignment tab. </h3> 
 		</div>
 
 		<div id="tab2" class="tabcontent">
