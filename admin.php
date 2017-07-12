@@ -12,25 +12,24 @@ if (isset($_SESSION['id'])) {
 	// echo 'Not logged in';
 }
 ?>
-
+<script type="text/javascript" src="script/admin.js"></script>
 <html>
 	<body> 
 		<?php include 'layout/header.php' ?>
 		<div class="tab">
 				
-				<button id="tablink1">  <span class="glyphicon glyphicon glyphicon-edit"></span> Electives Assignment  </button> 
-			
+			<button class="button_tab" id="tablink1">  <span class="glyphicon glyphicon glyphicon-edit"></span> Electives Assignment  </button> 
+			<button class="button_tab" id="tablink2"> <span class="glyphicon glyphicon glyphicon-list-alt"></span> Electives Information </button>
+			<button class="button_tab" id="tablink3"> <span class="glyphicon glyphicon glyphicon-calendar"></span> Student Schedule By Class </button>
 
-			<button id="tablink2"> <span class="glyphicon glyphicon glyphicon-list-alt"></span> Electives Information </button>
-			<button id="tablink3"> <span class="glyphicon glyphicon glyphicon-calendar"></span> Student Schedule By Class </button>
 		</div>
 
 		<div id="tab1" class="tabcontent"> 
-			<h3> Class Assignment tab. </h3> 
+			<h3> Class Assignment Tab. </h3> 
 		</div>
 
 		<div id="tab2" class="tabcontent">
-			<h3> Elective Information tab. </h3>
+			<h3> Elective Information Tab. </h3>
 		</div>
 
 		<div id="tab3" class="tabcontent"> 
@@ -42,4 +41,3 @@ if (isset($_SESSION['id'])) {
 
 </html>
 
-<script type="text/javascript" src="script/admin.js"></script>

@@ -27,7 +27,6 @@ include 'head.php';
 			</form>
 		</div>
 
-
 		<?php include 'layout/bottom.php' ?>
 	</body>
 </html>
