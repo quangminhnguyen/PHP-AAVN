@@ -22,14 +22,14 @@ body {
 }
 
 /* The button is active when the tab is being showed. */
-button .activee{
-    color: white;
+.tab .activee{
+    color: floralwhite;
     background-color: crimson; 
-    border-bottom: 3px solid;
+    border-bottom: 0px solid; 
     border-bottom-color: floralwhite;
 }
 
-.tab .button_tab {
+.button_tab {
     font-family: "Verdana";
     font-size: large;
     text-align: center;
@@ -41,13 +41,11 @@ button .activee{
     outline: none;
     transition: 0.3s; 
     cursor: pointer;
-    
-
     position: relative;
 }
 
 /* add element after the button*/
-.tab .button_tab:after {
+.button_tab:after {
     content: '';
     position: absolute;
     left: 0;
@@ -58,16 +56,33 @@ button .activee{
     transition: 0.8s;
 }
 
+.button_tab:hover:after {
+    width: 50%;
+}
+
+
+/* add element before the button*/
+.button_tab:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 0%;
+    border-left: 3px solid;
+    border-left-color: floralwhite;
+    transition: 0.8s;
+}
+
+
+.button_tab:hover:before {
+    height: 50%;
+}
 
 /* display when hover the buttons. */
-.tab .button_tab:hover {
-    color: aliceblue;
-    background-color: crimson; 
+.button_tab:hover {
+    color: aliceblue; 
 }
 
-.tab .button_tab:hover:after {
-    width: 100%;
-}
 
 .tabcontent {
     display: none; /* Not display initially. */
@@ -76,13 +91,11 @@ button .activee{
     border-color: lightgrey;
 }
 
-
 .tabcontent {
     -webkit-animation: fadeEffect 2s;
     animation: fadeEffect 2s; 
 }
 
-/* References: https://www.w3schools.com/howto/howto_js_tabs.asp */
 @-webkit-keyframes fadeEffect {
     from {opacity: 0;}
     to {opacity: 1;}

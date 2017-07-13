@@ -17,7 +17,6 @@ window.onload = function () {
 		$(this).addClass('activee');
 
 
-		// alert($(this).hasClass('activee'));
 		var id = $(this).attr('id');
 		var tab_num = parseInt(id.substr(id.length - 1));
 		var tab_to_show = 'tab' + tab_num;
