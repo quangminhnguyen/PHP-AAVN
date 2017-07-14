@@ -80,7 +80,8 @@ body {
 
 /* display when hover the buttons. */
 .button_tab:hover {
-    color: aliceblue; 
+    color: floralwhite;
+    /* background-color: crimson; */
 }
 
 

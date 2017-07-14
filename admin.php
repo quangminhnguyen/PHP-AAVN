@@ -9,7 +9,9 @@ include 'head.php';
 if (isset($_SESSION['id'])) {
 	// echo 'Logged in';
 } else {
-	// echo 'Not logged in';
+	echo 'Not logged in';
+	header('Location: aavn.php');
+	exit();
 }
 ?>
 <script type="text/javascript" src="script/admin.js"></script>
@@ -25,7 +27,25 @@ if (isset($_SESSION['id'])) {
 		</div>
 
 		<div id="tab1" class="tabcontent"> 
-			<h3> Class Assignment Tab. </h3> 
+			<h3> Class Assignment Tab. </h3>
+			<?php
+				random_create_new_user(20);
+
+				$electives = get_list_of_electives();
+				print_r($electives); 
+				// echo $electives[0]['name'];
+				echo '<br>';
+				foreach($electives as $tuple) {
+					echo $tuple['name'];
+					echo '<br>';
+					$student_list = get_list_of_students($tuple['electiveid'], 1);
+					foreach($student_list as $student) {
+						echo $student['name'].'<br>';
+					}
+					echo '-------------<br>';
+				}
+			?>
+
 		</div>
 
 		<div id="tab2" class="tabcontent">

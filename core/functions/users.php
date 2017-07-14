@@ -98,7 +98,6 @@ function has_signed_up($id) {
 }
 
 
-
 /* Returns whether the student elective selection has been confirmed.*/
 function elective_has_been_confirmed($id){
 	global $mysqli;
@@ -109,10 +108,128 @@ function elective_has_been_confirmed($id){
 	if ($result->num_rows == 1) {
 		return True;
 	}
-
 	return False;
 }
 
+
+/* Returns list of electives. */
+function get_list_of_electives() {
+	$electives = array();
+
+	global $mysqli;
+	$result = $mysqli->query("SELECT electiveid, name
+								FROM electivesInfo");
+	while($elective_name = mysqli_fetch_assoc($result)) {
+		array_push($electives, $elective_name);
+	} 
+	return $electives;
+}
+
+
+/* get list of students who select $elective as their choice number $choice_num*/
+function get_list_of_students($elective, $choice_num) {
+	global $mysqli;									
+
+	$col_name = '';
+	
+	if ($choice_num == 1) {
+		$col_name = 'elective1';
+	} else if ($choice_num == 2) {
+		$col_name = 'elective2';
+	} else if ($choice_num == 3) {
+		$col_name = 'elective3';
+	}
+
+
+	$result = $mysqli->query("SELECT *
+								FROM studentOpinion, user
+								WHERE id = studentid 
+								AND $col_name = '$elective'");
+	
+	// print_r($result);
+	// echo 'num rows: '.mysqli_num_rows($result);
+
+
+	$student_list = [];
+	while ($student = mysqli_fetch_assoc($result)) {
+		array_push($student_list, $student);
+	}
+
+	return $student_list;
+}
+
+
+/* Adds new user to the user table. */
+function add_new_user($email, $password, $name, $nick_name, $class) {
+	global $mysqli;
+
+	$mysqli->query("INSERT INTO user (email, password, name, nick_name, class)
+		VALUES('$email', '$password', '$name', '$nick_name', '$class')");
+}
+
+
+/* Adds k new users and select their electives randomly. */
+function random_create_new_user($k) {
+	$char = "0123456789abcdefghijklmnopqrstuvwxyz";
+	$len = mt_rand(10, 15);
+	for ($i = 1; $i <= $k; $i++) {
+
+		/* Randomly generate email. */
+		$email = random_email_generator();
+		
+		/* Randomly generate password. */
+		$password = md5('password');
+
+		/* Randomly generate name. */
+		$name = random_name_generator();
+		$nick_name = random_name_generator();
+
+		/* Randomly pick a class*/
+		$a = array("10A, 10B, 11W, 11C, 12A, 9A");
+		$random_keys = array_rand($a , 1);
+		$class = $a[$random_keys];
+
+		/* Add user to the database. */
+		add_new_user($email, $password, $name, $nick_name, $class);
+
+
+		/* Randomly pick the electives. */
+		$id = get_user_id($email);
+		$a = array(1, 2, 3, 4);
+		$random_keys = array_rand($a , 3);
+		insert_student_elective_opinion($id, $a[$random_keys[0]], $a[$random_keys[1]], $a[$random_keys[2]]);
+
+	}
+
+}
+
+/* Random email generator */
+function random_email_generator() {
+	$char = '0123456789abcdefghijklmnopqrstuvwxyz';
+  	$len = mt_rand(5, 10); /* random length */
+  	$address = '';
+  	for ($i = 1; $i <= $len; $i++) {
+    	$address .= substr($char, mt_rand(0, strlen($char)), 1);
+  	}
+	$address .= '@aavn.edu.vn';
+	return $address;
+}
+
+
+
+
+
+/* random name generator. */
+function random_name_generator() {
+	$char = 'ab cdef ghij klmn opqr stuv wxyz';
+  	$len = mt_rand(10, 20); /* random length */
+  	$name = '';
+  	for ($i = 1; $i <= $len; $i++) {
+    	$name .= substr($char, mt_rand(0, strlen($char)), 1);
+  	}
+
+  	return $name;
+}
 
 
 ?>
