@@ -25,8 +25,8 @@ body {
 .tab .activee{
     color: floralwhite;
     background-color: crimson; 
-    border-bottom: 0px solid; 
-    border-bottom-color: floralwhite;
+    border: 0px solid; 
+    /* border-bottom-color: floralwhite; */
 }
 
 .button_tab {
@@ -57,11 +57,12 @@ body {
 }
 
 .button_tab:hover:after {
-    width: 50%;
+    width: 100%;
 }
 
 
 /* add element before the button*/
+/* 
 .button_tab:before {
     content: '';
     position: absolute;
@@ -76,7 +77,7 @@ body {
 
 .button_tab:hover:before {
     height: 50%;
-}
+} */
 
 /* display when hover the buttons. */
 .button_tab:hover {

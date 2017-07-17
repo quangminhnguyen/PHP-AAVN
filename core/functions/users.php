@@ -185,7 +185,7 @@ function random_create_new_user($k) {
 		$nick_name = random_name_generator();
 
 		/* Randomly pick a class*/
-		$a = array("10A, 10B, 11W, 11C, 12A, 9A");
+		$a = array('10A', '10B', '11W', '11C', '12A', '9A');
 		$random_keys = array_rand($a , 1);
 		$class = $a[$random_keys];
 
@@ -196,6 +196,7 @@ function random_create_new_user($k) {
 		/* Randomly pick the electives. */
 		$id = get_user_id($email);
 		$a = array(1, 2, 3, 4);
+		shuffle($a);
 		$random_keys = array_rand($a , 3);
 		insert_student_elective_opinion($id, $a[$random_keys[0]], $a[$random_keys[1]], $a[$random_keys[2]]);
 
@@ -214,9 +215,6 @@ function random_email_generator() {
 	$address .= '@aavn.edu.vn';
 	return $address;
 }
-
-
-
 
 
 /* random name generator. */
