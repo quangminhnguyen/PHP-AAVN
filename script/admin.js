@@ -26,6 +26,19 @@ window.onload = function () {
 	/* By default makes the tab 'elective assignment' active. */
 	$('#tablink1').click();
 
-	alert($('#tablink1').hasClass('activee'));
+	// alert($('#tablink1').hasClass('activee'));
 	//alert($(this).hasClass('button_tab'));
+
+	/* Make the navigation bars sticks to the top of the screen. */
+	$(window).scroll(function(){
+		var dist = $(window).scrollTop();
+		if (dist >= 200) {
+			$('.tab').addClass('sticky');
+			$('.tabcontent').css('margin-top', 65);
+		} else {
+			// alert('huhuhuhu ' + dist);
+			$('.tab').removeClass('sticky');
+			$('.tabcontent').css('margin-top', 0);
+		}
+	});
 }

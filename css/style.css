@@ -12,6 +12,8 @@ body {
 
 
 .tab {
+    z-index: 10;
+    width: 100%;
     overflow: hidden;
     border-top: 3px solid;
     border-bottom: 3px solid; 
@@ -88,7 +90,7 @@ body {
 
 .tabcontent {
     display: none; /* Not display initially. */
-    padding: 15 20px;
+    padding: 20 25px;
     border: 1px solid;
     border-color: lightgrey;
 }
@@ -108,3 +110,11 @@ body {
     from {opacity: 0;}
     to {opacity: 1;}
 }
+
+/* Makes the navigation bar stick to the top. */
+.sticky {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+}
+

@@ -25,7 +25,6 @@ if (isset($_SESSION['id'])) {
 			<button class="button_tab" id="tablink3"> <span class="glyphicon glyphicon glyphicon-calendar"></span> Student Schedule By Class </button>
 
 		</div>
-
 		<div id="tab1" class="tabcontent"> 
 			<?php include 'core/elective_assignment.php' ?>
 		</div>

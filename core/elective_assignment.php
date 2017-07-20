@@ -1,3 +1,5 @@
+
+<form>
 <?php 
 $electives = get_list_of_electives();
 print_r($electives);
@@ -7,10 +9,6 @@ $electives_str = '';
 foreach($electives as $tuple) {
 	$electives_str .= '<th>'.ucfirst($tuple['name']).'</th>';
 }
-
-
-
-
 
 foreach($electives as $tuple) {
 	echo '<h3>'.$tuple['name'].'</h3>';
@@ -48,7 +46,6 @@ foreach($electives as $tuple) {
 	}
 
 	echo '
-	<form>
 		<table class="table table-hover table-responsive">
 			<thead>
 				<tr> 
@@ -62,7 +59,7 @@ foreach($electives as $tuple) {
 			<tbody>'. $table_body. 
 			'</tbody>
 		</table>
-		<button type="submit"> Confirm </button>
-	</form>';
+		';
 }
 ?>
+</form>
