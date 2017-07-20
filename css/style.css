@@ -90,7 +90,7 @@ body {
 
 .tabcontent {
     display: none; /* Not display initially. */
-    padding: 20 25px;
+    padding: 10 15px;
     border: 1px solid;
     border-color: lightgrey;
 }
@@ -116,5 +116,11 @@ body {
     position: fixed;
     top: 0px;
     width: 100%;
+}
+
+table {
+    width:inherit;
+    overflow-x: scroll;
+    display: block;
 }
 

@@ -9,11 +9,14 @@ $electives_str = '';
 foreach($electives as $tuple) {
 	$electives_str .= '<th>'.ucfirst($tuple['name']).'</th>';
 }
-
+echo '<div class = "panel panel-group">';
 foreach($electives as $tuple) {
-	echo '<h3>'.$tuple['name'].'</h3>';
-	echo '<br>';
+	echo '<div class="panel panel-primary">
+				<div class="panel panel-heading"> 
+					<h4>'.$tuple['name'].'</h4>
+				</div>'; /* Close the panel heading. */
 
+	echo '      <div class="panel panel-body">';
 	$table_body = '';
 	$student_list = get_list_of_students($tuple['electiveid'], 1);
 	// print_r($student_list);
@@ -60,6 +63,10 @@ foreach($electives as $tuple) {
 			'</tbody>
 		</table>
 		';
+
+	echo '</div>'; /* Close the panel-body*/
+	echo '</div>'; /* Close the panel. */
 }
+echo '</div>'; /* Close the panel group. */
 ?>
 </form>
