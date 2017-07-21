@@ -10,17 +10,22 @@ foreach($electives as $tuple) {
 	$electives_str .= '<th>'.ucfirst($tuple['name']).'</th>';
 }
 echo '<div class = "panel panel-group">';
-foreach($electives as $tuple) {
+$collapse_id = 0;
+foreach($electives as $tup) {
 	echo '<div class="panel panel-primary">
-				<div class="panel panel-heading"> 
-					<h4>'.$tuple['name'].'</h4>
+				<div class="panel-heading"> 
+					<h4 class="panel-title">
+						<a data-toggle="collapse" href="#collapse'.$collapse_id.'"> '.$tup['name'].' </a>
+					</h4>
 				</div>'; /* Close the panel heading. */
 
-	echo '      <div class="panel panel-body">';
+	echo '      <div id="collapse'.$collapse_id.'" class="panel panel-body collapse panel-collapse">';
 	$table_body = '';
-	$student_list = get_list_of_students($tuple['electiveid'], 1);
+	$student_list = get_list_of_students($tup['electiveid'], 1);
 	// print_r($student_list);
+	$num_student = 0; 
 	foreach($student_list as $student) {
+		$num_student += 1;
 		$table_body .= '<tr>
 							<td>'.$student['name'].'</td>
 							<td>'.$student['name'].'</td>
@@ -65,7 +70,16 @@ foreach($electives as $tuple) {
 		';
 
 	echo '</div>'; /* Close the panel-body*/
+	echo '<div class="panel-footer">
+			<div class="row">  
+				<div class="col-sm-4"> Instructor: '.$tup['teacher_name'].' </div>
+				<div class="col-sm-4"> '.$num_student.' students </div>
+				<div class="col-sm-4"> col3 </div>
+			</div>
+		 </div>';
 	echo '</div>'; /* Close the panel. */
+
+	$collapse_id += 1;
 }
 echo '</div>'; /* Close the panel group. */
 ?>
