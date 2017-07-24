@@ -29,6 +29,7 @@ window.onload = function () {
 	// alert($('#tablink1').hasClass('activee'));
 	//alert($(this).hasClass('button_tab'));
 
+
 	/* Make the navigation bars sticks to the top of the screen. */
 	$(window).scroll(function(){
 		var dist = $(window).scrollTop();
@@ -41,4 +42,39 @@ window.onload = function () {
 			$('.tabcontent').css('margin-top', 0);
 		}
 	});
+
+
+	/*
+	$('.glyphicon-chevron-up').click(function(){
+		alert('test2');
+		if ($(this).parent().attr('aria-expanded') == 'true') {
+			// $(this).parent().attr('aria-expanded', 'true');
+			alert('helo2');
+			$(this).removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+		}
+	});
+
+
+	$('.glyphicon-chevron-down').click(function(){
+		alert('test1');
+		if ($(this).parent().attr('aria-expanded') == 'false') {
+			// $(this).parent().attr('aria-expanded', 'true');
+			alert('helo1');
+			$(this).removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+		}
+	}); */
+
+	$('[href]').click(function() {
+		var num = parseInt($(this).attr('href'));
+		// alert('1');
+		// alert($(this).attr('aria-expanded') == undefined)
+		if ($(this).attr('aria-expanded') == 'false' ||  $(this).attr('aria-expanded') == undefined) {
+			// alert('2');
+			$('a > span:eq('.num.')').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+		} else if ($(this).attr('aria-expanded') == 'true') {
+			$('a > span:eq('.num.')').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+		}
+	});
+
+
 }

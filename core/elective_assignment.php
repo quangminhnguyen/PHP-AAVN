@@ -74,7 +74,11 @@ foreach($electives as $tup) {
 			<div class="row">  
 				<div class="col-sm-4"> Instructor: '.$tup['teacher_name'].' </div>
 				<div class="col-sm-4"> '.$num_student.' students </div>
-				<div class="col-sm-4"> col3 </div>
+				<div class="col-sm-4"> 
+					<a data-toggle="collapse" href="#collapse'.$collapse_id.'"> 
+						<span class="pull-right glyphicon glyphicon-chevron-down"> </span>
+					</a>
+				</div>
 			</div>
 		 </div>';
 	echo '</div>'; /* Close the panel. */

@@ -20,9 +20,9 @@ if (isset($_SESSION['id'])) {
 		<?php include 'layout/header.php' ?>
 		<div class="tab">
 				
-			<button class="button_tab" id="tablink1">  <span class="glyphicon glyphicon glyphicon-edit"></span> Electives Assignment  </button> 
-			<button class="button_tab" id="tablink2"> <span class="glyphicon glyphicon glyphicon-list-alt"></span> Electives Information </button>
-			<button class="button_tab" id="tablink3"> <span class="glyphicon glyphicon glyphicon-calendar"></span> Student Schedule By Class </button>
+			<button class="button_tab" id="tablink1">  <span class="glyphicon glyphicon-edit"></span> Electives Assignment  </button> 
+			<button class="button_tab" id="tablink2"> <span class="glyphicon glyphicon-list-alt"></span> Electives Information </button>
+			<button class="button_tab" id="tablink3"> <span class="glyphicon glyphicon-calendar"></span> Student Schedule By Class </button>
 
 		</div>
 		<div id="tab1" class="tabcontent"> 
