@@ -167,6 +167,13 @@ function add_new_user($email, $password, $name, $nick_name, $class) {
 		VALUES('$email', '$password', '$name', '$nick_name', '$class')");
 }
 
+/* Assign student with $student_id to take $elective_id.*/
+function make_assignment($student_id, $elective_id) {
+	global $mysqli;
+
+	$mysqli->query("INSERT INTO studentAssignment (studentid, electiveid)
+		VALUES('$student_id ','$elective_id')");
+}
 
 /* Adds k new users and select their electives randomly. */
 function random_create_new_user($k) {
@@ -217,9 +224,9 @@ function random_email_generator() {
 }
 
 
-/* random name generator. */
+/* Random name generator. */
 function random_name_generator() {
-	$char = 'ab cdef ghij klmn opqr stuv wxyz';
+	$char = 'abcdef ghijklmn opqr stuvwxyz';
   	$len = mt_rand(10, 20); /* random length */
   	$name = '';
   	for ($i = 1; $i <= $len; $i++) {
@@ -228,6 +235,7 @@ function random_name_generator() {
 
   	return $name;
 }
+
 
 
 ?>

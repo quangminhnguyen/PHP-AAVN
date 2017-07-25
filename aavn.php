@@ -9,8 +9,6 @@ include 'head.php';
 <!DOCTYPE html>
 <html>
 	<body>
-		<?php include 'layout/header.php' ?>
-
 		<div id="container">
 			<h4> <?php include 'user_login.php'; ?> </h4>
 

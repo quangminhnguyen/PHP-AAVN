@@ -1,8 +1,20 @@
+<!-- PART 1: Handle assignment (server side) -->
+<?php 
+/* Handle elective assignment. */
+if (!empty($_POST) === true) {
+	// print_r($_POST);
+	foreach($_POST as $studentid => $electiveid) {
+		make_assignment($studentid, $electiveid);
+	}
+}
 
-<form>
+?>
+
+<!-- PART 2: Construct Assignment form -->
+<form action="admin.php" method="post">
 <?php 
 $electives = get_list_of_electives();
-print_r($electives);
+// print_r($electives);
 
 /* Construct a list of table headers which are name of the electives. */
 $electives_str = '';
@@ -21,7 +33,11 @@ foreach($electives as $tup) {
 
 	echo '      <div id="collapse'.$collapse_id.'" class="panel panel-body collapse panel-collapse">';
 	$table_body = '';
+
+	/* Get list of students who select this elective as their First choice. */
 	$student_list = get_list_of_students($tup['electiveid'], 1);
+
+
 	// print_r($student_list);
 	$num_student = 0; 
 	foreach($student_list as $student) {
@@ -38,14 +54,14 @@ foreach($electives as $tup) {
 			if (($electiveid == $student['elective1']) ||  ($electiveid == $student['elective2']) || ($electiveid == $student['elective3'])) {
 
 				if ($electiveid == $student['elective1']) {
-					$table_body .= '<td> <input type="radio" name="'.$student['name'].'" value= '.$electiveid.' checked> </td>';
+					$table_body .= '<td> <input type="radio" name="'.$student['id'].'" value= '.$electiveid.' checked> </td>';
 				} else {
-					$table_body .= '<td> <input type="radio" name="'.$student['name'].'" value= '.$electiveid.'> </td>';
+					$table_body .= '<td> <input type="radio" name="'.$student['id'].'" value= '.$electiveid.'> </td>';
 				}
 
 
 			} else {
-				$table_body .= '<td> <input type="radio" name="'.$student['name'].'" value= '.$electiveid.' disabled> </td>';
+				$table_body .= '<td> <input type="radio" name="'.$student['id'].'" value= '.$electiveid.' disabled> </td>';
 			}
 		}
 
@@ -87,4 +103,7 @@ foreach($electives as $tup) {
 }
 echo '</div>'; /* Close the panel group. */
 ?>
+
+<button class='btn btn-primary btn-block btn-lg' type="submit"> <span class="glyphicon glyphicon-save
+"></span> Save Assignment </button>
 </form>

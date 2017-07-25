@@ -21,7 +21,4 @@
 		header('Location: student_view_signed_up.php');
 		die();
 	}
-
-
-
 ?>

@@ -13,7 +13,9 @@ if (isset($_SESSION['id'])) {
 	header('Location: aavn.php');
 	exit();
 }
+
 ?>
+
 <script type="text/javascript" src="script/admin.js"></script>
 <html>
 	<body> 
@@ -22,8 +24,10 @@ if (isset($_SESSION['id'])) {
 				
 			<button class="button_tab" id="tablink1">  <span class="glyphicon glyphicon-edit"></span> Electives Assignment  </button> 
 			<button class="button_tab" id="tablink2"> <span class="glyphicon glyphicon-list-alt"></span> Electives Information </button>
-			<button class="button_tab" id="tablink3"> <span class="glyphicon glyphicon-calendar"></span> Student Schedule By Class </button>
-
+			<button class="button_tab" id="tablink3"> <span class="glyphicon glyphicon-user"></span> Admin Tools </button>
+			<a href="user_logout.php"> 
+			<button class="button_tab"> <span class="glyphicon glyphicon-log-out"> </span> Sign out </button> 
+			</a>
 		</div>
 		<div id="tab1" class="tabcontent"> 
 			<?php include 'core/elective_assignment.php' ?>
