@@ -3,6 +3,7 @@
 /* Handle elective assignment. */
 if (!empty($_POST) === true) {
 	// print_r($_POST);
+	clear_student_assignment();
 	foreach($_POST as $studentid => $electiveid) {
 		make_assignment($studentid, $electiveid);
 	}
@@ -12,6 +13,7 @@ if (!empty($_POST) === true) {
 
 <!-- PART 2: Construct Assignment form -->
 <form action="admin.php" method="post">
+
 <?php 
 $electives = get_list_of_electives();
 // print_r($electives);
@@ -24,6 +26,7 @@ foreach($electives as $tuple) {
 echo '<div class = "panel panel-group">';
 $collapse_id = 0;
 foreach($electives as $tup) {
+	// print_r(get_student_assignment($tup['electiveid'],1));
 	echo '<div class="panel panel-primary">
 				<div class="panel-heading"> 
 					<h4 class="panel-title">
@@ -53,7 +56,12 @@ foreach($electives as $tup) {
 			$electiveid = $tuple['electiveid'];
 			if (($electiveid == $student['elective1']) ||  ($electiveid == $student['elective2']) || ($electiveid == $student['elective3'])) {
 
-				if ($electiveid == $student['elective1']) {
+				$temp = $student['elective1'];
+				if (elective_has_been_confirmed($student['id'])) {
+					$temp = get_assign_elective($student['id']);
+				}
+
+				if ($electiveid == $temp) {
 					$table_body .= '<td> <input type="radio" name="'.$student['id'].'" value= '.$electiveid.' checked> </td>';
 				} else {
 					$table_body .= '<td> <input type="radio" name="'.$student['id'].'" value= '.$electiveid.'> </td>';

@@ -1,4 +1,15 @@
 <?php 
+function clear_student_assignment() {
+	global $mysqli;
+	$mysqli->query("TRUNCATE TABLE studentAssignment");
+}
+
+
+function update_student_signed_up_status($id) {
+	global $mysqli;
+	$mysqli->query("UPDATE user SET signed_up=1 WHERE id='$id'");
+}
+
 
 // Check if the user exists in the database.
 function user_exists($email, $password) {
@@ -52,11 +63,8 @@ function insert_student_elective_opinion($id, $opinion1, $opinion2, $opinion3) {
 	global $mysqli;
 	$mysqli->query("INSERT INTO studentOpinion (studentid, elective1, elective2, elective3)
 		VALUES ('$id', '$opinion1', '$opinion2', '$opinion3')");
-}
 
-
-function update_student_signed_up_status($id) {
-	global $mysqli;
+	/* Set the flag signed_up to indicate that the an elective assignment has been made for the student. */
 	$mysqli->query("UPDATE user SET signed_up=1 WHERE id='$id'");
 }
 
@@ -112,6 +120,8 @@ function elective_has_been_confirmed($id){
 }
 
 
+
+
 /* Returns list of electives. */
 function get_list_of_electives() {
 	$electives = array();
@@ -126,7 +136,7 @@ function get_list_of_electives() {
 }
 
 
-/* get list of students who select $elective as their choice number $choice_num*/
+/* Gets list of students who select $elective as their choice number $choice_num*/
 function get_list_of_students($elective, $choice_num) {
 	global $mysqli;									
 
@@ -159,6 +169,49 @@ function get_list_of_students($elective, $choice_num) {
 }
 
 
+/* Gets elective assignments for students who select $elective as their choice number $choice_num. Note that the elective assignment MAY NOT be same as the student first choice. */
+/* 
+function get_student_assignment($elective, $choice_num) {
+	global $mysqli;
+
+	$col_name = '';
+	
+	if ($choice_num == 1) {
+		$col_name = 'elective1';
+	} else if ($choice_num == 2) {
+		$col_name = 'elective2';
+	} else if ($choice_num == 3) {
+		$col_name = 'elective3';
+	}
+
+
+	$result = $mysqli->query("SELECT studentOpinion.*, user.*, sA.assign_elective
+								FROM studentOpinion, user, studentAssignment as sA
+								WHERE user.id = studentOpinion.studentid 
+								AND $col_name = '$elective' 
+								AND sA.studentid = user.id");
+
+	$student_list = [];
+	while ($student = mysqli_fetch_assoc($result)) {
+		array_push($student_list, $student);
+	}
+
+	return $student_list;
+}
+*/
+
+function get_assign_elective($id) {
+	global $mysqli;
+
+	$result = $mysqli->query("SELECT *
+								FROM studentAssignment
+								WHERE studentid = '$id'");
+	
+	$record = mysqli_fetch_assoc($result);
+	return $record['assign_elective'];
+}
+
+
 /* Adds new user to the user table. */
 function add_new_user($email, $password, $name, $nick_name, $class) {
 	global $mysqli;
@@ -173,6 +226,9 @@ function make_assignment($student_id, $elective_id) {
 
 	$mysqli->query("INSERT INTO studentAssignment (studentid, electiveid)
 		VALUES('$student_id ','$elective_id')");
+
+	/* Set the flag elective_confirm to indicate that an elective assignment has been made for the student. */
+	$mysqli->query("UPDATE user SET elective_confirm=1 WHERE id='$student_id'");
 }
 
 /* Adds k new users and select their electives randomly. */
