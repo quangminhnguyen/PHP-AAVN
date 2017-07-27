@@ -208,6 +208,8 @@ function get_assign_elective($id) {
 								WHERE studentid = '$id'");
 	
 	$record = mysqli_fetch_assoc($result);
+	// echo $id.' ';
+	// echo mysqli_num_rows($result).' '; 
 	return $record['assign_elective'];
 }
 
@@ -224,7 +226,7 @@ function add_new_user($email, $password, $name, $nick_name, $class) {
 function make_assignment($student_id, $elective_id) {
 	global $mysqli;
 
-	$mysqli->query("INSERT INTO studentAssignment (studentid, electiveid)
+	$mysqli->query("INSERT INTO studentAssignment (studentid, assign_elective)
 		VALUES('$student_id ','$elective_id')");
 
 	/* Set the flag elective_confirm to indicate that an elective assignment has been made for the student. */

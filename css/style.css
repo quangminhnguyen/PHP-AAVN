@@ -123,3 +123,8 @@ table {
     overflow-x: scroll;
     display: block;
 }
+
+input {
+    /* margin: 0 auto; */
+    text-align: : center;
+}

@@ -41,13 +41,17 @@ foreach($electives as $tup) {
 	$student_list = get_list_of_students($tup['electiveid'], 1);
 
 
-	// print_r($student_list);
+	# Counting number of student selects this elective as their first choice.
 	$num_student = 0; 
+
+	# Count number of student was reassigned.
+	$num_of_reassignment = 0;
+
 	foreach($student_list as $student) {
 		$num_student += 1;
 		$table_body .= '<tr>
-							<td>'.$student['name'].'</td>
-							<td>'.$student['name'].'</td>
+							<td>'.$student['last_name'].'</td>
+							<td>'.$student['last_name'].'</td>
 							<td>'.$student['nick_name'].'</td>
 							<td>'.$student['email'].'</td>
 							<td>'.$student['class'].'</td>';
@@ -59,17 +63,22 @@ foreach($electives as $tup) {
 				$temp = $student['elective1'];
 				if (elective_has_been_confirmed($student['id'])) {
 					$temp = get_assign_elective($student['id']);
+					// echo 'test'.$temp;
 				}
 
 				if ($electiveid == $temp) {
-					$table_body .= '<td> <input type="radio" name="'.$student['id'].'" value= '.$electiveid.' checked> </td>';
+					/* If the elective that the students were assigned to are different from the student's first choice, it mean that the students have been reassigned. */
+					if ($electiveid != $student['elective1']) {
+						$num_of_reassignment += 1;
+					} 
+					$table_body .= '<td align="center"> <input type="radio" name="'.$student['id'].'" value= '.$electiveid.' checked> </td>';
 				} else {
-					$table_body .= '<td> <input type="radio" name="'.$student['id'].'" value= '.$electiveid.'> </td>';
+					$table_body .= '<td align="center"> <input type="radio" name="'.$student['id'].'" value= '.$electiveid.'> </td>';
 				}
 
 
 			} else {
-				$table_body .= '<td> <input type="radio" name="'.$student['id'].'" value= '.$electiveid.' disabled> </td>';
+				$table_body .= '<td align="center"> <input type="radio" name="'.$student['id'].'" value= '.$electiveid.' disabled> </td>';
 			}
 		}
 
@@ -94,11 +103,26 @@ foreach($electives as $tup) {
 		';
 
 	echo '</div>'; /* Close the panel-body*/
+
+	$info1 = '';
+	if ($num_student <= 1) {
+		$info1 .= $num_student.' student selected this elective as their first choice. ';
+	} else {
+		$info1 .= $num_student.' students selected this elective as their first choice. ';
+	}
+
+	$info2 = '';
+	if ($num_of_reassignment<= 1) {
+		$info2 .= $num_of_reassignment.' student was reassigned.';
+	} else {
+		$info2 .= $num_of_reassignment.' students were reassigned.';
+	}
+
 	echo '<div class="panel-footer">
 			<div class="row">  
-				<div class="col-sm-4"> Instructor: '.$tup['teacher_name'].' </div>
-				<div class="col-sm-4"> '.$num_student.' students </div>
-				<div class="col-sm-4"> 
+				<div class="col-sm-3"> Instructor: '.$tup['teacher_name'].' </div>
+				<div class="col-sm-6"> '.$info1.''.$info2.'</div>
+				<div class="col-sm-3"> 
 					<a data-toggle="collapse" href="#collapse'.$collapse_id.'"> 
 						<span class="pull-right glyphicon glyphicon-chevron-down"> </span>
 					</a>
