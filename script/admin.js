@@ -44,24 +44,26 @@ window.onload = function () {
 	});
 
 	$('[href]').click(function() {
-		var str = $(this).attr('href');
-		var num = str.substr(str.length - 1);
-		num = parseInt(num);
+		var href = $(this).attr('href');
+		// var num = str.substr(str.length - 1);
+		// num = parseInt(num);
 		// alert(num);
 		// alert('1');
 		// alert($(this).attr('aria-expanded') == undefined)
 		if ($(this).attr('aria-expanded') == 'false' ||  $(this).attr('aria-expanded') == undefined) {
 			// alert('2');
 			$('a > span').each(function(index) {
-				if (index == num) {
+				if ($(this).parent().attr('href') == href) {
 					$(this).removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
 				}
 			});
 
+
+
 			
 		} else if ($(this).attr('aria-expanded') == 'true') {
 			$('a > span').each(function(index) {
-				if (index == num) {
+				if ($(this).parent().attr('href') == href) {
 					$(this).removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
 				}
 			});

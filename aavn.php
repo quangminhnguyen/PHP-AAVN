@@ -4,6 +4,7 @@
 // Initialize session and connect to the user database.
 include 'core/init.php';
 include 'head.php';
+// random_create_new_user(20);
 ?>
 
 <!DOCTYPE html>

@@ -35,6 +35,7 @@ if (isset($_SESSION['id'])) {
 
 		<div id="tab2" class="tabcontent">
 			<h3> Elective Information Tab. </h3>
+			<?php include 'core/elective_info.php' ?>
 		</div>
 
 		<div id="tab3" class="tabcontent"> 

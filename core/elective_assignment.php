@@ -1,5 +1,11 @@
 <!-- PART 1: Handle assignment (server side) -->
-<?php 
+<?php
+
+//clear_user();
+//clear_student_opinion();
+//clear_student_assignment();
+
+
 /* Handle elective assignment. */
 if (!empty($_POST) === true) {
 	// print_r($_POST);
@@ -49,9 +55,16 @@ foreach($electives as $tup) {
 
 	foreach($student_list as $student) {
 		$num_student += 1;
+
+		/* $student_status indicates whether the student's selected elective has been confirmed. */
+		$student_status = '&#10060';
+		if ($student['elective_confirm'] == 1) {
+			$student_status = '&#9989';
+		}
+
 		$table_body .= '<tr>
-							<td>'.$student['last_name'].'</td>
-							<td>'.$student['last_name'].'</td>
+							<td align="center">'.$student_status.'</td>
+							<td>'.$student['first_name'].'</td>
 							<td>'.$student['nick_name'].'</td>
 							<td>'.$student['email'].'</td>
 							<td>'.$student['class'].'</td>';
@@ -90,8 +103,8 @@ foreach($electives as $tup) {
 		<table class="table table-hover table-responsive">
 			<thead>
 				<tr> 
+				<th> Confirm </th>
 				<th> First Name </th>
-				<th> Last Name </th>
 				<th> Nick Name </th>
 				<th> Email </th>
 				<th> Class </th>

@@ -4,6 +4,21 @@ function clear_student_assignment() {
 	$mysqli->query("TRUNCATE TABLE studentAssignment");
 }
 
+function clear_user() {
+	global $mysqli;
+	$mysqli->query("TRUNCATE TABLE user");
+}
+
+function clear_student_opinion() {
+	global $mysqli;
+	$mysqli->query("TRUNCATE TABLE studentOpinion");
+}
+
+function clear_elective_info() {
+	global $mysqli;
+	$mysqli->query("TRUNCATE TABLE electivesInfo");
+}
+
 
 function update_student_signed_up_status($id) {
 	global $mysqli;
@@ -169,6 +184,24 @@ function get_list_of_students($elective, $choice_num) {
 }
 
 
+/* Gets students who are assigned to take elective $id. */
+function get_students_take_elective($elective_id) {
+	global $mysqli;
+
+	$result = $mysqli->query("SELECT * 
+								FROM studentAssignment, user
+								WHERE studentid = id
+								AND assign_elective = '$elective_id'");
+
+	$student_list = [];
+	while ($student = mysqli_fetch_assoc($result)) {
+		array_push($student_list, $student);
+	}
+	
+	return $student_list;
+}
+
+
 /* Gets elective assignments for students who select $elective as their choice number $choice_num. Note that the elective assignment MAY NOT be same as the student first choice. */
 /* 
 function get_student_assignment($elective, $choice_num) {
@@ -215,11 +248,11 @@ function get_assign_elective($id) {
 
 
 /* Adds new user to the user table. */
-function add_new_user($email, $password, $name, $nick_name, $class) {
+function add_new_user($email, $password, $first_name, $last_name,$nick_name, $class) {
 	global $mysqli;
 
-	$mysqli->query("INSERT INTO user (email, password, name, nick_name, class)
-		VALUES('$email', '$password', '$name', '$nick_name', '$class')");
+	$mysqli->query("INSERT INTO user (email, password, first_name, last_name, nick_name, class)
+		VALUES('$email', '$password', '$first_name', '$last_name','$nick_name', '$class')");
 }
 
 /* Assign student with $student_id to take $elective_id.*/
@@ -246,7 +279,8 @@ function random_create_new_user($k) {
 		$password = md5('password');
 
 		/* Randomly generate name. */
-		$name = random_name_generator();
+		$first_name = random_name_generator();
+		$last_name = random_name_generator();
 		$nick_name = random_name_generator();
 
 		/* Randomly pick a class*/
@@ -255,7 +289,7 @@ function random_create_new_user($k) {
 		$class = $a[$random_keys];
 
 		/* Add user to the database. */
-		add_new_user($email, $password, $name, $nick_name, $class);
+		add_new_user($email, $password, ucfirst($first_name), ucfirst($last_name), ucfirst($nick_name), $class);
 
 
 		/* Randomly pick the electives. */
@@ -284,7 +318,7 @@ function random_email_generator() {
 
 /* Random name generator. */
 function random_name_generator() {
-	$char = 'abcdef ghijklmn opqr stuvwxyz';
+	$char = 'abcdefghijklmnopqrstuvwxyz';
   	$len = mt_rand(10, 20); /* random length */
   	$name = '';
   	for ($i = 1; $i <= $len; $i++) {
