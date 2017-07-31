@@ -21,7 +21,7 @@ foreach($electives as $tup) {
 
 	echo '  <div id="collapseb'.$collapse_id.'" class="panel panel-body collapse panel-collapse">';
 
-	
+	// echo $tup['electiveid'];
 
 	$student_elective = get_students_take_elective($tup['electiveid']);
 
@@ -30,7 +30,7 @@ foreach($electives as $tup) {
 
 	/* Table body. */
 	$table_body = '<tbody>';
-	foreach($student_list as $student) {
+	foreach($student_elective as $student) {
 		$num_student += 1;
 
 		$table_body .= '<tr>
@@ -58,12 +58,31 @@ foreach($electives as $tup) {
 	echo '<table class="table table-hover table-responsive">'.$table_head.$table_body.'</table>';
 	echo '	</div>'; /* Close the panel-body */
 
+	$mess = '';
+	if ($num_student <= 1) {
+		$mess .= $num_student.' student enrolled in the class.';
+	} else {
+		$mess .= $num_student.' students enrolled in the class.';
+	}
 
 	echo '<div class="panel-footer">
 			<div class="row">  
-				<div class="col-sm-3"> Instructor: '.$tup['teacher_name'].' </div>
+				<div class="col-sm-3"> Instructed by '.$tup['teacher_name'].' </div>
 				<div class="col-sm-6"> </div>
-				<div class="col-sm-3"> 
+				<div class="col-sm-3">
+					<text class="pull-right">
+						'.$mess.'
+					</text>
+				</div>
+			</div>
+			<div>
+				'.$tup['description'].' 
+			</div>
+			<div class="row">
+				<div class="col-sm-9">
+		
+				</div>
+				<div class="col-sm-3">
 					<a data-toggle="collapse" href="#collapseb'.$collapse_id.'"> 
 						<span class="pull-right glyphicon glyphicon-chevron-down"> </span>
 					</a>
@@ -77,6 +96,7 @@ foreach($electives as $tup) {
 }
 
 echo '</div>'; /* Close the panel group */
-
-
 ?>
+
+<button class='btn btn-warning btn-md' data-toggle="popover" title="Title" data-content="Chicken"> <span class="glyphicon glyphicon-alert"> </span> Unenroll All Students </button>
+

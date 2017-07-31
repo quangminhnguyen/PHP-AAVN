@@ -133,7 +133,7 @@ foreach($electives as $tup) {
 
 	echo '<div class="panel-footer">
 			<div class="row">  
-				<div class="col-sm-3"> Instructor: '.$tup['teacher_name'].' </div>
+				<div class="col-sm-3"> Instructed by '.$tup['teacher_name'].' </div>
 				<div class="col-sm-6"> '.$info1.''.$info2.'</div>
 				<div class="col-sm-3"> 
 					<a data-toggle="collapse" href="#collapse'.$collapse_id.'"> 
@@ -149,6 +149,6 @@ foreach($electives as $tup) {
 echo '</div>'; /* Close the panel group. */
 ?>
 
-<button class='btn btn-primary btn-block btn-lg' type="submit"> <span class="glyphicon glyphicon-save
+<button class='btn btn-primary btn-md' type="submit"> <span class="glyphicon glyphicon-save
 "></span> Save Assignment </button>
 </form>

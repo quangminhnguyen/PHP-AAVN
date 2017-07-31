@@ -142,7 +142,7 @@ function get_list_of_electives() {
 	$electives = array();
 
 	global $mysqli;
-	$result = $mysqli->query("SELECT electiveid, name, teacher_name
+	$result = $mysqli->query("SELECT electiveid, name, teacher_name, description
 								FROM electivesInfo");
 	while($elective_name = mysqli_fetch_assoc($result)) {
 		array_push($electives, $elective_name);
@@ -197,7 +197,7 @@ function get_students_take_elective($elective_id) {
 	while ($student = mysqli_fetch_assoc($result)) {
 		array_push($student_list, $student);
 	}
-	
+	/* print_r($student_list); */
 	return $student_list;
 }
 

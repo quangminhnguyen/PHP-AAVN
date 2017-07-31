@@ -118,13 +118,25 @@ body {
     width: 100%;
 }
 
-table {
+.table {
     width: 100%;
+    /* margin: 0px auto; */
     overflow-x: scroll;
     display: block;
+    float: none;
 }
 
 input {
     /* margin: 0 auto; */
     text-align: : center;
 }
+
+/*
+.col-centered{
+    width: 100%;
+    margin: 0 auto;
+} */
+
+
+
+

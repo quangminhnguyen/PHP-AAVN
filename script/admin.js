@@ -1,4 +1,9 @@
+
+
 window.onload = function () {
+
+	/* Opt-in popover function. */
+	$("[data-toggle=popover]").popover();
 
 
 	$('.tab > button').click(function() {
