@@ -22,9 +22,15 @@ function clear_elective_info() {
 
 function update_student_signed_up_status($id) {
 	global $mysqli;
-	$mysqli->query("UPDATE user SET signed_up=1 WHERE id='$id'");
+	$mysqli->query("UPDATE user SET signed_up = 1 WHERE id='$id'");
 }
 
+
+function unassign_all_user(){
+	global $mysqli;
+	$mysqli->query("TRUNCATE TABLE studentAssignment");
+	$mysqli->query("UPDATE user SET elective_confirm = 0");
+}
 
 // Check if the user exists in the database.
 function user_exists($email, $password) {

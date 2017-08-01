@@ -3,7 +3,76 @@
 window.onload = function () {
 
 	/* Opt-in popover function. */
-	$("[data-toggle=popover]").popover();
+	// $("[data-toggle=popover]").popover();
+
+
+
+	var html = [
+    '<div>',
+        '<button class="btn btn-danger" id="unenroll-yes"> Yes </button>',
+        '<button class="btn btn-primary" id="unenroll-no"> No </button>',
+    '</div>'].join('\n');
+    
+    
+    $('#unenroll-btn').popover({
+    	placement: 'top',
+    	title:'Are you sure?',
+    	html: true,
+    	content: html
+    });
+
+	$('#unenroll-btn').on('hidden.bs.popover', function (e) {
+    	$(e.target).data("bs.popover").inState.click = false;
+	});
+	// alert(JSON.stringify({action : 'unenroll', student_id: 'all'}));
+    $('#unenroll-btn').on('shown.bs.popover', function() {
+    	$('#unenroll-yes').click(function() {
+    		$.ajax({
+    			url: 'users.php',
+    			type: 'post',
+    			data: {'action':'unenroll', 'student_id':'all'},
+    			success: function(response) {
+    				// alert(response);
+    				if (response == 'success') {
+
+    					location.reload();
+    				}
+    			}
+    		});
+    		$('#unenroll-btn').popover('hide');
+    	});
+
+    	$('#unenroll-no').click(function() {
+    		$('#unenroll-btn').popover('hide');
+    	});
+
+    	$(window).scroll(function(){
+    		$('#unenroll-btn').popover('hide');
+    	});
+    });
+
+
+
+
+    /*
+	$('#unenroll-btn').popover({
+    	title: 'Test',
+    	html: true,
+    	content: contentHtml,
+    	trigger: 'manual'
+		}).on('shown.bs.popover', function () {
+    		var $popup = $(this);
+
+    		$(this).next('.popover').find('button.cancel').click(function (e) {
+    			alert('1');
+        		$popup.popover('hide');
+    		});
+
+    		$(this).next('.popover').find('button.save').click(function (e) {
+    			alert('2');
+        		$popup.popover('hide');
+    		});
+	});  */
 
 
 	$('.tab > button').click(function() {

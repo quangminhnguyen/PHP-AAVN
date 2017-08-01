@@ -149,6 +149,6 @@ foreach($electives as $tup) {
 echo '</div>'; /* Close the panel group. */
 ?>
 
-<button class='btn btn-primary btn-md' type="submit"> <span class="glyphicon glyphicon-save
+<button class='btn btn-primary btn-lg btn-block' type="submit"> <span class="glyphicon glyphicon-save
 "></span> Save Assignment </button>
 </form>

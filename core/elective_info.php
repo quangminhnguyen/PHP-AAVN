@@ -67,10 +67,10 @@ foreach($electives as $tup) {
 
 	echo '<div class="panel-footer">
 			<div class="row">  
-				<div class="col-sm-3"> Instructed by '.$tup['teacher_name'].' </div>
-				<div class="col-sm-6"> </div>
+				<div class="col-sm-9"> Instructed by '.$tup['teacher_name'].' </div>
+				
 				<div class="col-sm-3">
-					<text class="pull-right">
+					<text>
 						'.$mess.'
 					</text>
 				</div>
@@ -98,5 +98,6 @@ foreach($electives as $tup) {
 echo '</div>'; /* Close the panel group */
 ?>
 
-<button class='btn btn-warning btn-md' data-toggle="popover" title="Title" data-content="Chicken"> <span class="glyphicon glyphicon-alert"> </span> Unenroll All Students </button>
+<button class='btn btn-primary btn-block btn-lg' id="unenroll-btn"> <span class="glyphicon glyphicon-alert" > </span> Unenroll All Students </button>
+
 
