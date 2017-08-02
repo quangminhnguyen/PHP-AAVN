@@ -118,15 +118,19 @@ foreach($electives as $tup) {
 	echo '</div>'; /* Close the panel-body*/
 
 	$info1 = '';
-	if ($num_student <= 1) {
-		$info1 .= $num_student.' student selected this elective as their first choice. ';
+	if ($num_student == 0) {
+		$info1 .= 'No students selected this elective as their first choice.';
+	} elseif ($num_student == 1) {
+		$info1 .= '1 student selected this elective as their first choice. ';
 	} else {
 		$info1 .= $num_student.' students selected this elective as their first choice. ';
 	}
 
 	$info2 = '';
-	if ($num_of_reassignment<= 1) {
-		$info2 .= $num_of_reassignment.' student was reassigned.';
+	if ($num_student == 1) {
+		$info2 .= 'No students were reassigned.';
+	} elseif ($num_of_reassignment == 1) {
+		$info2 .= '1 student was reassigned.';
 	} else {
 		$info2 .= $num_of_reassignment.' students were reassigned.';
 	}

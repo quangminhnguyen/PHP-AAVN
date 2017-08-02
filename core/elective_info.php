@@ -34,6 +34,7 @@ foreach($electives as $tup) {
 		$num_student += 1;
 
 		$table_body .= '<tr>
+							<td align="center"> <a style="text-decoration:none;" unenroll_id="'.$student['id'].'"> &#9940 </a></td>
 							<td>'.$student['first_name'].'</td>
 							<td>'.$student['last_name'].'</td>
 							<td>'.$student['nick_name'].'</td>
@@ -47,6 +48,7 @@ foreach($electives as $tup) {
 	/* Table header. */
 	$table_head = '<thead>
 						<tr>
+						<th> Unenroll </th>
 						<th> First Name </th>
 						<th> Last Name </th>
 						<th> Nick Name </th>
@@ -59,10 +61,12 @@ foreach($electives as $tup) {
 	echo '	</div>'; /* Close the panel-body */
 
 	$mess = '';
-	if ($num_student <= 1) {
-		$mess .= $num_student.' student enrolled in the class.';
+	if ($num_student == 0) {
+		$mess .= 'No students enrolled in this class.';
+	} elseif ($num_student == 1) {
+		$mess .= 'A student enrolled in this class.';
 	} else {
-		$mess .= $num_student.' students enrolled in the class.';
+		$mess .= $num_student.' students enrolled in this class.';
 	}
 
 	echo '<div class="panel-footer">

@@ -31,11 +31,19 @@ window.onload = function () {
     			url: 'users.php',
     			type: 'post',
     			data: {'action':'unenroll', 'student_id':'all'},
+    			dataType: 'json',
     			success: function(response) {
+    				//alert('helo');
+    				// alert('helo');
     				// alert(response);
-    				if (response == 'success') {
 
-    					location.reload();
+    				// alert('helo');
+    				// alert(location.href);
+    				
+    				if (response.status == 'success') {
+    					alert('kaka');
+    					$('#tab2 tbody').html('');
+    					$('text').html('0 student enrolled in the class.')
     				}
     			}
     		});
@@ -52,7 +60,20 @@ window.onload = function () {
     });
 
 
-
+    $('[unenroll_id]').popover({
+    	placement: 'right',
+    	title: 'Are you sure that you want to unenroll this student?',
+    	html: true,
+    	content: function() {
+    		// return 'helo';
+			var html = [
+		    '<div>',
+		        '<button class="btn btn-danger" unenroll_id_yes="'+$(this).attr('unenroll_id')+'" > Yes </button>',
+		        '<button class="btn btn-primary" > No </button>',
+		    '</div>'].join('\n');
+    		return html;
+    	}
+    });
 
     /*
 	$('#unenroll-btn').popover({

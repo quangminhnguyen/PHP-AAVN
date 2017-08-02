@@ -1,7 +1,8 @@
 <?php
 	include 'core/init.php';
-	include 'head.php';
 	
+	$response_array = [];
+
 	if ((isset($_POST) === true) && (isset($_POST['action']) === true)) {
 		$action = $_POST['action'];
 		// echo 'helo';
@@ -14,14 +15,18 @@
 					
 				if ($student_id == 'all') {
 					unassign_all_user();
-					echo 'success';
+					$response_array['status'] = 'success';
 				} else {
-					echo '';
+					$response_array['status'] = 'error';
 				}
 
 			} else {
-				echo '';	
+				$response_array['status'] = 'error';	
 			}
+
+			/* Returns the response message. */
+			header('Content-type: application/json');
+			echo json_encode(($response_array));
 		} 
 	}
 ?>
