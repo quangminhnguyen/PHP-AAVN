@@ -1,12 +1,6 @@
 
 
 window.onload = function () {
-
-	/* Opt-in popover function. */
-	// $("[data-toggle=popover]").popover();
-
-
-
 	var html = [
     '<div>',
         '<button class="btn btn-danger" id="unenroll-yes"> Yes </button>',
@@ -32,18 +26,11 @@ window.onload = function () {
     			type: 'post',
     			data: {'action':'unenroll', 'student_id':'all'},
     			dataType: 'json',
-    			success: function(response) {
-    				//alert('helo');
-    				// alert('helo');
-    				// alert(response);
-
-    				// alert('helo');
-    				// alert(location.href);
-    				
+    			success: function(response) {    				
     				if (response.status == 'success') {
     					alert('kaka');
     					$('#tab2 tbody').html('');
-    					$('text').html('0 student enrolled in the class.')
+    					$('count').html('No students enrolled in the class.')
     				}
     			}
     		});
@@ -53,11 +40,16 @@ window.onload = function () {
     	$('#unenroll-no').click(function() {
     		$('#unenroll-btn').popover('hide');
     	});
-
-    	$(window).scroll(function(){
-    		$('#unenroll-btn').popover('hide');
-    	});
     });
+    
+    $(window).scroll(function(){
+    	$('.popover').prev().popover('hide');
+    }); 
+
+
+   	$('[unenroll_id]').on('hidden.bs.popover', function (e) {
+    	$(e.target).data("bs.popover").inState.click = false;
+	});
 
 
     $('[unenroll_id]').popover({
@@ -65,15 +57,62 @@ window.onload = function () {
     	title: 'Are you sure that you want to unenroll this student?',
     	html: true,
     	content: function() {
-    		// return 'helo';
 			var html = [
 		    '<div>',
 		        '<button class="btn btn-danger" unenroll_id_yes="'+$(this).attr('unenroll_id')+'" > Yes </button>',
-		        '<button class="btn btn-primary" > No </button>',
+		        '<button class="btn btn-primary" unenroll_id_no="'+$(this).attr('unenroll_id')+'"> No </button>',
 		    '</div>'].join('\n');
     		return html;
     	}
     });
+
+
+ 	/* delegated event. */
+	$('td').on('click', '[unenroll_id_no]', function() {
+		$("[unenroll_id='"+ $(this).attr('unenroll_id_no') + "']").popover('hide');
+	});
+
+    /* delegated event. */
+	$('td').on('click', '[unenroll_id_yes]', function() {
+		// alert($(this).attr('unenroll_id_yes'));
+		// $iam.popover('hide');
+		// alert('helo');
+		var student_id =  $(this).attr('unenroll_id_yes');
+		$.ajax({
+			url: 'users.php',
+			type: 'post',
+			data: {'action':'unenroll', 'student_id': student_id},
+			dataType:'json',
+			success: function(response) {
+				if (response.status == 'success') {
+					var panel = $("[unenroll_id='"+ student_id + "']").closest('.panel');
+					// alert(panel.attr('class'));
+					var count_dom = panel.next().find('count') /* Access the count DOM */
+					var prev_num = parseInt(count_dom.attr('count'));
+					// alert(prev_num);
+					var curr_num = prev_num - 1;
+					count_dom.attr('count', curr_num);
+
+					var mess = '';
+					if (curr_num == 0) {
+						mess += 'No students enrolled in this class.';
+					} else if (curr_num == 1) {
+						mess += 'A student enrolled in this class.';
+					} else {
+						mess += curr_num + ' students enrolled in this class.';
+					}
+					// alert(mess);
+					count_dom.html(mess);
+
+					/* remove the row from the table. */
+					$("[unenroll_id='"+ student_id + "']").closest('tr').remove();
+				} else {
+					alert('error: ' + response.status);
+				}
+			}
+		});
+		$("[unenroll_id='"+ $(this).attr('unenroll_id_yes') + "']").popover('hide');
+	});
 
     /*
 	$('#unenroll-btn').popover({
@@ -121,9 +160,6 @@ window.onload = function () {
 	/* By default makes the tab 'elective assignment' active. */
 	$('#tablink1').click();
 
-	// alert($('#tablink1').hasClass('activee'));
-	//alert($(this).hasClass('button_tab'));
-
 
 	/* Make the navigation bars sticks to the top of the screen. */
 	$(window).scroll(function(){
@@ -140,11 +176,6 @@ window.onload = function () {
 
 	$('[href]').click(function() {
 		var href = $(this).attr('href');
-		// var num = str.substr(str.length - 1);
-		// num = parseInt(num);
-		// alert(num);
-		// alert('1');
-		// alert($(this).attr('aria-expanded') == undefined)
 		if ($(this).attr('aria-expanded') == 'false' ||  $(this).attr('aria-expanded') == undefined) {
 			// alert('2');
 			$('a > span').each(function(index) {
@@ -153,9 +184,6 @@ window.onload = function () {
 				}
 			});
 
-
-
-			
 		} else if ($(this).attr('aria-expanded') == 'true') {
 			$('a > span').each(function(index) {
 				if ($(this).parent().attr('href') == href) {

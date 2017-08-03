@@ -60,6 +60,7 @@ foreach($electives as $tup) {
 	echo '<table class="table table-hover table-responsive">'.$table_head.$table_body.'</table>';
 	echo '	</div>'; /* Close the panel-body */
 
+	/*
 	$mess = '';
 	if ($num_student == 0) {
 		$mess .= 'No students enrolled in this class.';
@@ -67,16 +68,18 @@ foreach($electives as $tup) {
 		$mess .= 'A student enrolled in this class.';
 	} else {
 		$mess .= $num_student.' students enrolled in this class.';
-	}
+	} */
+
+	$mess = get_count_mess($num_student);
 
 	echo '<div class="panel-footer">
 			<div class="row">  
 				<div class="col-sm-9"> Instructed by '.$tup['teacher_name'].' </div>
 				
 				<div class="col-sm-3">
-					<text>
+					<count count='.$num_student.'>
 						'.$mess.'
-					</text>
+					</count>
 				</div>
 			</div>
 			<div>

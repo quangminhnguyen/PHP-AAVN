@@ -12,12 +12,20 @@
 
 			if (isset($_POST['student_id'])) {
 				$student_id = $_POST['student_id'];
-					
+				
+				/* Unassign all students. */
 				if ($student_id == 'all') {
 					unassign_all_user();
 					$response_array['status'] = 'success';
+				
+				/* Unassign a specific student. */
 				} else {
-					$response_array['status'] = 'error';
+					if (user_exists_id($student_id) === true) { 
+						unassign_a_user((int) $student_id);
+						$response_array['status'] = 'success';
+					} else {
+						$response_array['status'] = 'error';
+					}
 				}
 
 			} else {

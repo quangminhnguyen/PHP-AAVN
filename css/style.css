@@ -137,6 +137,9 @@ input {
     margin: 0 auto;
 } */
 
+.table a:hover {
+    cursor: pointer;
+}
 
 
 

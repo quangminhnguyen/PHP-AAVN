@@ -32,6 +32,12 @@ function unassign_all_user(){
 	$mysqli->query("UPDATE user SET elective_confirm = 0");
 }
 
+function unassign_a_user($id){
+	global $mysqli;
+	$mysqli->query("DELETE FROM studentAssignment WHERE studentid='$id'");
+	$mysqli->query("UPDATE user SET elective_confirm = 0 WHERE id='$id'");
+}
+
 // Check if the user exists in the database.
 function user_exists($email, $password) {
 	global $mysqli;
@@ -39,6 +45,19 @@ function user_exists($email, $password) {
 
 	while($user = mysqli_fetch_assoc($result)) {
 		if($user['email'] == $email && $user['password'] == md5($password)) {
+			return True;
+		} 
+	}
+	return False;
+}
+
+/* Checks if a user with a particular id exists. */
+function user_exists_id($id) {
+	global $mysqli;
+	$result = $mysqli->query("SELECT * FROM user");
+
+	while($user = mysqli_fetch_assoc($result)) {
+		if($user['id'] == $id) {
 			return True;
 		} 
 	}
@@ -56,6 +75,17 @@ function get_user_id($email) {
 	return $user['id'];
 }
 
+function get_count_mess($num_student) {
+	$mess = '';
+	if ($num_student == 0) {
+		$mess .= 'No students enrolled in this class.';
+	} elseif ($num_student == 1) {
+		$mess .= 'A student enrolled in this class.';
+	} else {
+		$mess .= $num_student.' students enrolled in this class.';
+	}
+	return $mess;
+}
 
 function construct_elective_dropdown($name) {
 	global $mysqli;
