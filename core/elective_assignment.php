@@ -62,7 +62,7 @@ foreach($electives as $tup) {
 			$student_status = '&#9989';
 		}
 
-		$table_body .= '<tr>
+		$table_body .= '<tr test="alo">
 							<td align="center">'.$student_status.'</td>
 							<td>'.$student['first_name'].'</td>
 							<td>'.$student['nick_name'].'</td>

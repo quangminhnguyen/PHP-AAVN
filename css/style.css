@@ -142,6 +142,16 @@ input {
 }
 
 
-
+.circle-outline
+{    
+    display: inline-block; 
+    width: 65px;
+    height: 65px;
+    color:smoke;
+    padding: 8px 4px;
+    border: 2px solid;
+    border-color: black;
+    border-radius: 50%;
+}
 
 

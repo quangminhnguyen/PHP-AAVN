@@ -28,9 +28,11 @@ window.onload = function () {
     			dataType: 'json',
     			success: function(response) {    				
     				if (response.status == 'success') {
-    					alert('kaka');
     					$('#tab2 tbody').html('');
     					$('count').html('No students enrolled in the class.')
+
+    					/* Reset all status in the restration table (table 1) */
+    					$('#tab1 td:first-child').html('&#10060');
     				}
     			}
     		});
@@ -104,8 +106,17 @@ window.onload = function () {
 					// alert(mess);
 					count_dom.html(mess);
 
-					/* remove the row from the table. */
+					/* Removes the row from the information table (table 2) */
 					$("[unenroll_id='"+ student_id + "']").closest('tr').remove();
+
+					/* Changes status in the registration table (table 1) */
+					// alert(student_id);
+					// alert($('#tab1').find("[name='"+ student_id +"']").attr('name'));
+					var checkbox = $('#tab1').find("[name='"+ student_id +"']");
+					var table_row = checkbox.closest('tr'); /* retrieve the closest table row.*/
+					var confirm_col = table_row.children().first(); /* get the first table data. */
+					confirm_col.html('&#10060'); /* Reset status to unconfirm. */
+					
 				} else {
 					alert('error: ' + response.status);
 				}
