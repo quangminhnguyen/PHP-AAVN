@@ -148,10 +148,42 @@ input {
     width: 65px;
     height: 65px;
     color:smoke;
-    padding: 8px 4px;
+    padding: 9px 4px;
     border: 2px solid;
-    border-color: black;
+    border-color: white;
     border-radius: 50%;
 }
 
+.ft {
+    border-top: 3px solid;
+    border-bottom: 3px solid;
+    border-color: darkred;
+    background: red;
+    height: 100px;
+}
 
+/* 
+.center-div {
+    padding: 10px;
+    position: relative;
+    margin: 0px auto;
+} */
+
+.logo-section {
+    height: 100px;
+    /* border: 1px solid blue;  */
+
+} 
+.logo-container {
+    padding: 15px;
+    /* border: 1px solid white; */
+}
+
+.fa-facebook,.fa-youtube, .fa-institution {
+    color: white;
+}
+
+.ft-mess {
+    color: white;
+    padding: 30px;
+}
