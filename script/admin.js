@@ -204,5 +204,23 @@ window.onload = function () {
 		}
 	});
 
+	/*
+	(function($) {
+    	$.fn.hasScrollBar = function() {
+        	return this.get(0).scrollHeight > this.height();
+    	}
+	})(jQuery); */
+	// alert('halo');
+	// alert($('body').hasScrollBar());
+	/* 
+	$('body').on('DOMSubtreeModified click', '.tabcontent',function() {
+		if ($('body').hasScrollBar() === true ) {
+			alert('yo');
+			$('.ft').css('position','relative');
+		} else {
+			alert('yo2');
+			$('.ft').css('position','absolute');
+		}
+	}); */
 
 }

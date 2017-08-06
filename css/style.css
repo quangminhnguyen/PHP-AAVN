@@ -1,7 +1,8 @@
 
-body {
-    margin: 0;
-    padding: 0;
+html, body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
 }
 
 .panel_img {
@@ -91,8 +92,8 @@ body {
 .tabcontent {
     display: none; /* Not display initially. */
     padding: 10 15px;
-    border: 1px solid;
-    border-color: lightgrey;
+    /* border: 1px solid; */
+    /* border-color: lightgrey; */
 }
 
 .tabcontent {
@@ -147,7 +148,7 @@ input {
     display: inline-block; 
     width: 65px;
     height: 65px;
-    color:smoke;
+    color: ghostwhite;
     padding: 9px 4px;
     border: 2px solid;
     border-color: white;
@@ -159,7 +160,14 @@ input {
     border-bottom: 3px solid;
     border-color: darkred;
     background: red;
+    
+    /* stick to the bottom. */
+    bottom: 0px;
     height: 100px;
+
+    width: 100%;
+    position: relative;
+    overflow: hidden;
 }
 
 /* 
@@ -186,4 +194,8 @@ input {
 .ft-mess {
     color: white;
     padding: 30px;
+}
+
+.main-content {
+    min-height: 65%;
 }
