@@ -1,5 +1,37 @@
 window.onload = function () {
 
+
+	$('.tab > button').click(function() {
+		
+		/* Hide all tabs */
+		$('.tabcontent').each(function(index) {
+			$(this).hide();
+		});
+
+		/* Make all buttons inactive */
+		$('.tab > button').each(function(index){
+			$(this).removeClass('activee');
+		});
+
+		/* Shows this tab and make its button active.*/
+		$(this).addClass('activee');
+
+
+		var id = $(this).attr('id');
+		var tab_num = parseInt(id.substr(id.length - 1));
+		var tab_to_show = 'student_tab' + tab_num;
+		$('#'+tab_to_show).show();
+	});
+
+	/* By default makes the tab 'elective assignment' active. */
+	$('#student_tab_link1').click();
+
+
+
+
+
+
+
 	function reset_radio(name, opinion_x, opinion_y) {
 		$(name).each(function() {
 			/* Clean up before disabling. */

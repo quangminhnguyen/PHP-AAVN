@@ -25,7 +25,5 @@ include 'head.php';
 				<button type="submit"> Login </button>
 			</form>
 		</div>
-
-		<?php include 'layout/bottom.php' ?>
 	</body>
 </html>

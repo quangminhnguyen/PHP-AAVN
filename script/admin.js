@@ -1,6 +1,8 @@
 
 
 window.onload = function () {
+
+	/* Unenroll all students. */
 	var html = [
     '<div>',
         '<button class="btn btn-danger" id="unenroll-yes"> Yes </button>',

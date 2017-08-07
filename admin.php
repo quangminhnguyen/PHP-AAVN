@@ -20,8 +20,8 @@ if (isset($_SESSION['id'])) {
 <html>
 	<body> 
 		<?php include 'layout/header.php' ?>
-		<div class="main-content">
-			<div class="tab">
+		
+		<div class="tab">
 					
 				<button class="button_tab" id="tablink1">  <span class="glyphicon glyphicon-edit"></span> Electives Assignment  </button> 
 				<button class="button_tab" id="tablink2"> <span class="glyphicon glyphicon-list-alt"></span> Electives Information </button>
@@ -29,7 +29,8 @@ if (isset($_SESSION['id'])) {
 				<a href="user_logout.php"> 
 				<button class="button_tab"> <span class="glyphicon glyphicon-log-out"> </span> Sign out </button> 
 				</a>
-			</div>
+		</div>
+		<div class="main-content">
 			<div id="tab1" class="tabcontent"> 
 				<?php include 'core/elective_assignment.php' ?>
 			</div>

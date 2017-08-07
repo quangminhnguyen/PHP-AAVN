@@ -7,7 +7,8 @@
 	<body>
 		<?php include 'layout/header.php' ?>
 
-		<div>
+		<div class='main-content'>
+			<!--
 			<?php
 				get_list_of_signedup_electives($_SESSION['id']);
 				if (!elective_has_been_confirmed($_SESSION['id'])) {
@@ -16,6 +17,7 @@
 					echo '<h3> Registration status: </h3> CONFIRMED.';
 				}
 			?>
+			-->
 		</div>
 		
 		<?php include 'layout/bottom.php' ?>
