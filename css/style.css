@@ -197,7 +197,7 @@ input {
 }
 
 .main-content {
-    min-height: 56%;
+    min-height: 60%;
 }
 
 
@@ -205,4 +205,50 @@ input {
 .glyphicon.glyphicon-ok-sign {
     font-size: 22px;
 } */
+
+/* Styling radio buttons. */
+
+input[type=radio].checkbox {
+  display: none;
+}
+
+input[type=radio].checkbox + label {
+    background: url('../img/uncheck.png') left top no-repeat;
+    display: block;
+    min-height: 30px;
+    padding-left: 35px;
+    padding-top: 7px;
+}
+
+
+input[type=radio].checkbox:checked + label {
+    background: url('../img/check.png') left top no-repeat;
+} 
+
+
+input[type=radio]:disabled {
+	display: none;
+}
+
+
+input[type=radio].checkbox:disabled + label {
+	/*
+    background: url('../img/cross.png') left top no-repeat; */
+    display:none;
+} 
+
+
+/*
+input[type=radio] {
+    background: url('../img/uncheck.png') left top no-repeat;
+    display: block;
+    min-height: 30px;
+    padding-left: 35px;
+    padding-top: 7px;
+}
+
+input[type=radio]:checked {
+	background: url('../img/check.png') left top no-repeat;
+} */
+
 

@@ -70,15 +70,17 @@ foreach($electives as $tup) {
 							<td>'.$student['class'].'</td>';
 
 		foreach($electives as $tuple) {
-			$electiveid = $tuple['electiveid'];
+			$electiveid = $tuple['electiveid']; 
 			if (($electiveid == $student['elective1']) ||  ($electiveid == $student['elective2']) || ($electiveid == $student['elective3'])) {
 
 				$temp = $student['elective1'];
 				if (elective_has_been_confirmed($student['id'])) {
 					$temp = get_assign_elective($student['id']);
+					echo 'here';
 					// echo 'test'.$temp;
 				}
-
+				echo $electiveid.','.$temp;
+				echo '<br>';
 				if ($electiveid == $temp) {
 					/* If the elective that the students were assigned to are different from the student's first choice, it mean that the students have been reassigned. */
 					if ($electiveid != $student['elective1']) {

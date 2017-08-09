@@ -104,7 +104,7 @@ function construct_elective_checklist($name) {
 	$result = $mysqli->query("SELECT * FROM electivesInfo");
 
 	while($elective = mysqli_fetch_assoc($result)) {
-		echo '<input type="radio" name="'.$name.'" value="'.$elective['electiveid'].'">'.$elective['name'].'</input>';
+		echo '<input type="radio" class="checkbox" name="'.$name.'" value="'.$elective['electiveid'].'" id="'.$elective['electiveid'].$name.'"> <label for="'.$elective['electiveid'].$name.'">'.$elective['name'].'</label></input>';
 	}
 
 }
