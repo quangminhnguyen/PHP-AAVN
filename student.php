@@ -43,22 +43,49 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
 
 			<!-- Students sign up tab. -->
 			<div id="student_tab1" class="tabcontent">
-				<?php ?>
-				<form name="select_activity" action="student_signup.php" method="post">	
-					<div>
-						<?php  construct_elective_checklist('opinion1'); ?>
+				
+				<form name="select_activity">	
+					<div class = "panel panel-group">
+						<!-- Question 1-->
+ 						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<h4 class="panel-title">  What is your most preferred elective? </h4>
+							</div>
+							
+							<div class="panel panel-body">
+								<?php  construct_elective_checklist('opinion1'); ?>
+							</div>
+
+						</div>
+
+						<!-- Question 2-->
+						<div class="panel panel-primary">
+							<div class="panel panel-heading">
+								<h4 class="panel-title"> What is your second most preferred elective? </h4>
+							</div>
+
+							<div class="panel panel-body">
+								<?php  construct_elective_checklist('opinion2'); ?>
+							</div>
+						</div>
+
+						<!-- Question 3-->
+						<div class="panel panel-primary">
+							<div class="panel panel-heading">
+								<h4 class="panel-title"> What is your third most preferred elective? </h4>
+							</div>
+
+							<div class="panel panel-body">
+								<?php  construct_elective_checklist('opinion3'); ?>
+							</div>
+						</div>
+						
+						
 					</div>
-					
-					<div>
-						<?php  construct_elective_checklist('opinion2'); ?>
-					</div>
-					
-					<div>
-						<?php  construct_elective_checklist('opinion3'); ?>
-					</div>
-					<button type="submit"> Submit  </button>
-					<button type="button" id="reset_but"> Reset </button> 
 				</form>
+				<button class="btn btn-primary btn-lg btn-block" id="submit_election_btn"> <span class="glyphicon glyphicon-ok"></span>  Submit  </button>
+
+				<button type="button" class="btn btn-danger btn-lg btn-block" id="erease_selection_btn"> <span class="glyphicon glyphicon-erase"> </span> Clear Selection </button>
 			</div>
 
 

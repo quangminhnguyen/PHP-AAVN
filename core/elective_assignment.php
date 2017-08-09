@@ -76,24 +76,22 @@ foreach($electives as $tup) {
 				$temp = $student['elective1'];
 				if (elective_has_been_confirmed($student['id'])) {
 					$temp = get_assign_elective($student['id']);
-					echo 'here';
 					// echo 'test'.$temp;
 				}
-				echo $electiveid.','.$temp;
-				echo '<br>';
+		
 				if ($electiveid == $temp) {
 					/* If the elective that the students were assigned to are different from the student's first choice, it mean that the students have been reassigned. */
 					if ($electiveid != $student['elective1']) {
 						$num_of_reassignment += 1;
 					} 
-					$table_body .= '<td align="center"> <input type="radio" name="'.$student['id'].'" value= '.$electiveid.' checked> </td>';
+					$table_body .= '<td align="center"> <input type="radio" name="'.$student['id'].'" value='.$electiveid.' checked> <sub> 1 </sub> </td>';
 				} else {
-					$table_body .= '<td align="center"> <input type="radio" name="'.$student['id'].'" value= '.$electiveid.'> </td>';
+					$table_body .= '<td align="center"> <input type="radio" name="'.$student['id'].'" value='.$electiveid.'> </td>';
 				}
 
 
 			} else {
-				$table_body .= '<td align="center"> <input type="radio" name="'.$student['id'].'" value= '.$electiveid.' disabled> </td>';
+				$table_body .= '<td align="center"> <input type="radio" name="'.$student['id'].'" value='.$electiveid.' disabled> </td>';
 			}
 		}
 

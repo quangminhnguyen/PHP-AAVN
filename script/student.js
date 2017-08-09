@@ -1,4 +1,19 @@
 window.onload = function () {
+	
+	/* Unenroll all students. */
+	var html = [
+    '<div>',
+        '<button class="btn btn-danger" id="unenroll-yes"> Yes </button>',
+        '<button class="btn btn-primary" id="unenroll-no"> No </button>',
+    '</div>'].join('\n');
+
+    $('#submit_election_btn').popover({
+    	placement: 'top',
+    	title:'Are you sure?',
+    	html: true,
+    	content: html
+    });
+
 
 
 	$('.tab > button').click(function() {
@@ -85,11 +100,8 @@ window.onload = function () {
 	});
 
 
-	$('#reset_but').on('click', function() {
+	$('#erease_selection_btn').on('click', function() {
 		reset_all();
 	});
-
-
-	
 }
 
