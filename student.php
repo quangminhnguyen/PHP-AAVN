@@ -31,7 +31,7 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
 			<button class="button_tab" id="student_tab_link2"> <span class="glyphicon glyphicon-list-alt"> </span>
 			Electives Information </button>
 			
-			<button class="button_tab"> <span class="fa fa-user-circle fa-fw"> </span> Profile </button>
+			<button class="button_tab" id="student_tab_link3"> <span class="fa fa-user-circle fa-fw"> </span> Profile </button>
 			
 			<a href="user_logout.php"> 
 				<button class="button_tab"> <span class="glyphicon glyphicon-log-out"> </span> Sign out </button>
@@ -79,13 +79,12 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
 								<?php  construct_elective_checklist('opinion3'); ?>
 							</div>
 						</div>
-						
-						
+						<br>
+						<button type="button" class="btn btn-danger btn-lg btn-block" id="erease_selection_btn"> <span class="glyphicon glyphicon-erase"> </span> Clear Selection </button>
+						<a class="btn btn-primary btn-lg btn-block" id="submit_election_btn"> <span class="glyphicon glyphicon-ok"></span>  Submit  </a>
 					</div>
 				</form>
-				<button class="btn btn-primary btn-lg btn-block" id="submit_election_btn"> <span class="glyphicon glyphicon-ok"></span>  Submit  </button>
 
-				<button type="button" class="btn btn-danger btn-lg btn-block" id="erease_selection_btn"> <span class="glyphicon glyphicon-erase"> </span> Clear Selection </button>
 			</div>
 
 
